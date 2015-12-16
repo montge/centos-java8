@@ -1,13 +1,13 @@
 # java
 #
-# VERSION       Java 8
+# VERSION       Java 8 on CentOS Latest
 
-# use the centos base image provided by dotCloud
+# use the centos base image from CentOS Official Repository
 FROM centos
-MAINTAINER Marco Palladino, marco@mashape.com
+MAINTAINER Evan Montgomery-Recht <recht_evan@bah.com>
 
-ENV JAVA_VERSION 8u31
-ENV BUILD_VERSION b13
+ENV JAVA_VERSION 8u65
+ENV BUILD_VERSION b17
 
 # Upgrading system
 RUN yum -y upgrade
@@ -18,7 +18,9 @@ RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=acc
 
 RUN yum -y install /tmp/jdk-8-linux-x64.rpm
 
-RUN alternatives --install /usr/bin/java jar /usr/java/latest/bin/java 200000
+RUN yum clean all
+
+RUN alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
 RUN alternatives --install /usr/bin/javaws javaws /usr/java/latest/bin/javaws 200000
 RUN alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
 
